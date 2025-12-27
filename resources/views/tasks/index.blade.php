@@ -78,9 +78,12 @@
                                 @else
                                     <a href="" class="btn btn-warning btn-sm">Mark as Pending</a>  
                                 @endif
-                                
-                                <a href="" class="btn btn-danger">Delete</a>
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
